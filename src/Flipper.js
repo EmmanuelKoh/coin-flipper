@@ -14,15 +14,13 @@ class Flipper extends Component {
     let [heads, tails] = ["https://upload.wikimedia.org/wikipedia/commons/2/28/98_quarter_obverse.png", "https://upload.wikimedia.org/wikipedia/commons/5/5a/98_quarter_reverse.png" ];
     let sides = [heads, tails];
     let chosen = sides[Math.floor(Math.random() * 2)]
-    chosen == heads ? 
     this.setState(curState => ({
       side: chosen,
-      counts: { flips: curState.counts.flips + 1, heads: curState.counts.heads + 1, tails: curState.counts.tails},
-    }))
-    :
-    this.setState(curState => ({
-      side: chosen,
-      counts: { flips: curState.counts.flips + 1, heads: curState.counts.heads, tails: curState.counts.tails + 1 },
+      counts: { 
+                flips: curState.counts.flips + 1, 
+                heads: curState.counts.heads + (chosen == heads ? 1 : 0), 
+                tails: curState.counts.tails + (chosen == tails ? 1 : 0)
+              },
     }))
     
   }
